@@ -1,0 +1,52 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/v1.0/market/company/getall",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 4888
+        }
+      ],
+      "UpstreamPathTemplate": "/company/getall",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1.0/market/company/register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 4888
+        }
+      ],
+      "UpstreamPathTemplate": "/company/register",
+      "UpstreamHttpMethod": [ "POST"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1.0/market/company/info/{companycode}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 4888
+        }
+      ],
+      "UpstreamPathTemplate": "/company/info//{companycode}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1.0/market/stock",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 43942
+        }
+      ],
+      "UpstreamPathTemplate": "/stock",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    }
+  ]
+} 
