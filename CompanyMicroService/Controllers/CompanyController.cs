@@ -75,7 +75,6 @@ namespace CompanyMicroService.Controllers
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-
             }
         }
 
