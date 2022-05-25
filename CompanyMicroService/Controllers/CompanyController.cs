@@ -87,6 +87,7 @@ namespace CompanyMicroService.Controllers
             try
             {
                 _companyService.Delete(companycode);
+
                 return Ok(StatusCodes.Status200OK);
             }
             catch (Exception ex)

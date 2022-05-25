@@ -22,7 +22,7 @@
         }
       ],
       "UpstreamPathTemplate": "/company/register",
-      "UpstreamHttpMethod": [ "POST"]
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/v1.0/market/company/info/{companycode}",
@@ -33,11 +33,23 @@
           "Port": 4888
         }
       ],
-      "UpstreamPathTemplate": "/company/info//{companycode}",
+      "UpstreamPathTemplate": "/company/info/{companycode}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/v1.0/market/stock",
+      "DownstreamPathTemplate": "/api/v1.0/market/company/delete/{companycode}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 4888
+        }
+      ],
+      "UpstreamPathTemplate": "/company/delete/{companycode}",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1.0/market/stock/get/{companyCode}/{startDate}/{endDate}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -45,8 +57,20 @@
           "Port": 43942
         }
       ],
-      "UpstreamPathTemplate": "/stock",
-      "UpstreamHttpMethod": [ "GET", "POST" ]
+      "UpstreamPathTemplate": "/stock/get/{companyCode}/{startDate}/{endDate}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1.0/market/stock/add",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 43942
+        }
+      ],
+      "UpstreamPathTemplate": "/stock/add",
+      "UpstreamHttpMethod": [ "POST" ]
     }
   ]
 } 
