@@ -8,8 +8,6 @@ using System.Linq;
 using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using VisioForge.Libs.MediaFoundation.OPM;
-using NuGet.Protocol.Plugins;
 using System.Text;
 
 namespace StockMicroService.Services
