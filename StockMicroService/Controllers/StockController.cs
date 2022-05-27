@@ -40,7 +40,7 @@ namespace StockMicroService.Controllers
 
         [Route("get/{companyCode}/{startDate}/{endDate}")]
         [HttpGet]
-        public ActionResult<StockResponse> GetStocksbyCompanyCodeAsync(string companyCode, DateTime startDate, DateTime endDate)
+        public ActionResult<StockResponse> Get(string companyCode, DateTime startDate, DateTime endDate)
         {
             try
             {
