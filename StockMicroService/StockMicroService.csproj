@@ -13,9 +13,5 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MessagingQueue\MessagingQueue.csproj" />
-  </ItemGroup>
-
 
 </Project>

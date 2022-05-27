@@ -13,9 +13,9 @@ namespace CompanyMicroService.Services
     public class CompanyService : ICompanyService
     {
         private readonly ICompanyRepository _companyRepository;
-        public readonly IDeleteStockRabbitMqService _rabbitMqService;
+        public readonly IPublishDeleteStockRabbitMqService _rabbitMqService;
 
-        public CompanyService(ICompanyRepository companyRepository, IDeleteStockRabbitMqService rabbitMqService)
+        public CompanyService(ICompanyRepository companyRepository, IPublishDeleteStockRabbitMqService rabbitMqService)
         {
             _companyRepository = companyRepository;
             _rabbitMqService = rabbitMqService;

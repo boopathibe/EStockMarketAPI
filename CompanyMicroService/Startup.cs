@@ -37,7 +37,7 @@ namespace CompanyMicroService
 
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanyService, CompanyService>();
-            services.AddSingleton<IDeleteStockRabbitMqService, DeleteStockRabbitMqService>();
+            services.AddSingleton<IPublishDeleteStockRabbitMqService, PublishDeleteStockRabbitMqService>();
 
             services.AddControllers();
             services.AddSwaggerGen(options =>
