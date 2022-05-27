@@ -50,7 +50,7 @@ namespace StockMicroService.Services
 
         public void Delete(string code)
         {
-            throw new NotImplementedException();
+            this._stockRepository.Delete(code);
         }
     }
 }

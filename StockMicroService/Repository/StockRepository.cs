@@ -27,13 +27,14 @@ namespace StockMicroService.Repository
 
         public List<Stock> Get(string code, DateTime startDate, DateTime endDate)
         {
-           var stocks = this._stockRepository.Find(x => x.CompanyCode == code && x.CreatedAt >= startDate && x.CreatedAt <= endDate).ToList();
+            this._stockRepository.DeleteMany(x => x.CompanyCode == code);
+            var stocks = this._stockRepository.Find(x => x.CompanyCode == code && x.CreatedAt >= startDate && x.CreatedAt <= endDate).ToList();
             return stocks;
         }
 
         public void Delete(string code)
         {
-            throw new NotImplementedException();
+            this._stockRepository.DeleteMany(x => x.CompanyCode == code);
         }
     }
 }
