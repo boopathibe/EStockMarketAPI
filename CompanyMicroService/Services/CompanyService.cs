@@ -1,6 +1,7 @@
 ﻿using CompanyMicroService.Entities;
 using CompanyMicroService.Models;
 using CompanyMicroService.Repository;
+using EStockCompanyMessagingQueue;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,15 @@ namespace CompanyMicroService.Services
     public class CompanyService : ICompanyService
     {
         private readonly ICompanyRepository _companyRepository;
-        public CompanyService(ICompanyRepository companyRepository)
+        public readonly IDeleteStockRabbitMqService _rabbitMqService;
+
+        public CompanyService(ICompanyRepository companyRepository, IDeleteStockRabbitMqService rabbitMqService)
         {
             _companyRepository = companyRepository;
+            _rabbitMqService = rabbitMqService;
         }
 
-            public List<CompanyResponse> GetAll()
+        public List<CompanyResponse> GetAll()
         {
             return this._companyRepository.Get().Select(company => new CompanyResponse
             {
@@ -66,10 +70,10 @@ namespace CompanyMicroService.Services
             return company;
         }
 
-        public void Delete(string code)
+        public void Delete(string companycode)
         {
-            this._companyRepository.Delete(code);
-            
+            _companyRepository.Delete(companycode);
+            _rabbitMqService.SendDeleteCompanyMessage(companycode);
         }
     }
 }

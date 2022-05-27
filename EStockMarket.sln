@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyMicroService", "CompanyMicroService\CompanyMicroService.csproj", "{3CC2452D-F289-4C25-B06E-63A5ECCF1F57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyMicroService", "CompanyMicroService\CompanyMicroService.csproj", "{3CC2452D-F289-4C25-B06E-63A5ECCF1F57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockMicroService", "StockMicroService\StockMicroService.csproj", "{FF7FA3EA-C8F7-40A7-A98D-E21A7F46C080}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockMicroService", "StockMicroService\StockMicroService.csproj", "{FF7FA3EA-C8F7-40A7-A98D-E21A7F46C080}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyMicroService.Test", "CompanyMicroService.Test\CompanyMicroService.Test.csproj", "{BF2EAEEA-10C4-4F2A-B630-33D9EA5AA1A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyMicroService.Test", "CompanyMicroService.Test\CompanyMicroService.Test.csproj", "{BF2EAEEA-10C4-4F2A-B630-33D9EA5AA1A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockMicroService.Test", "StockMicroService.Test\StockMicroService.Test.csproj", "{A3973F8F-62DC-4133-973D-ADB8B4E0D329}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockMicroService.Test", "StockMicroService.Test\StockMicroService.Test.csproj", "{A3973F8F-62DC-4133-973D-ADB8B4E0D329}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGateway", "APIGateway\APIGateway.csproj", "{BE9977E8-FF9D-4824-BF04-06DC547A05A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway", "APIGateway\APIGateway.csproj", "{BE9977E8-FF9D-4824-BF04-06DC547A05A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagingQueue", "MessagingQueue\MessagingQueue.csproj", "{767FF58C-F23A-4D85-9958-DCAE4098A3AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{BE9977E8-FF9D-4824-BF04-06DC547A05A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE9977E8-FF9D-4824-BF04-06DC547A05A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE9977E8-FF9D-4824-BF04-06DC547A05A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{767FF58C-F23A-4D85-9958-DCAE4098A3AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{767FF58C-F23A-4D85-9958-DCAE4098A3AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{767FF58C-F23A-4D85-9958-DCAE4098A3AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{767FF58C-F23A-4D85-9958-DCAE4098A3AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

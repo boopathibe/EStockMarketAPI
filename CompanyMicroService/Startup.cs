@@ -1,6 +1,7 @@
 using CompanyMicroService.Models;
 using CompanyMicroService.Repository;
 using CompanyMicroService.Services;
+using EStockCompanyMessagingQueue;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,7 @@ namespace CompanyMicroService
 
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanyService, CompanyService>();
+            services.AddSingleton<IDeleteStockRabbitMqService, DeleteStockRabbitMqService>();
 
             services.AddControllers();
             services.AddSwaggerGen(options =>
