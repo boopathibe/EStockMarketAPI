@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockMicroService", "StockM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway", "APIGateway\APIGateway.csproj", "{BE9977E8-FF9D-4824-BF04-06DC547A05A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyMicoService.Test", "CompanyMicoService.Test\CompanyMicoService.Test.csproj", "{49C78B4D-B81E-4A60-A7CC-DDCF9F99EF82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockMicroService.Test", "StockMicroService.Test\StockMicroService.Test.csproj", "{F3D0253F-0B82-4B02-8616-4A90E37A91B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{BE9977E8-FF9D-4824-BF04-06DC547A05A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE9977E8-FF9D-4824-BF04-06DC547A05A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE9977E8-FF9D-4824-BF04-06DC547A05A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49C78B4D-B81E-4A60-A7CC-DDCF9F99EF82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49C78B4D-B81E-4A60-A7CC-DDCF9F99EF82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49C78B4D-B81E-4A60-A7CC-DDCF9F99EF82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49C78B4D-B81E-4A60-A7CC-DDCF9F99EF82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3D0253F-0B82-4B02-8616-4A90E37A91B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3D0253F-0B82-4B02-8616-4A90E37A91B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3D0253F-0B82-4B02-8616-4A90E37A91B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3D0253F-0B82-4B02-8616-4A90E37A91B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
