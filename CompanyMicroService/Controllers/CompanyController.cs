@@ -29,12 +29,12 @@ namespace CompanyMicroService.Controllers
     
         [HttpGet]
         [Route("getall")]
-        public ActionResult <List<CompanyResponse>> Get()
+        public ActionResult<List<CompanyResponse>> Get()
         {
             try
             {
                var companies =  _companyService.GetAll();
-                return Ok(companies);
+               return Ok(companies);
             }
             catch (Exception ex)
             {
@@ -54,10 +54,7 @@ namespace CompanyMicroService.Controllers
                 
                 if(company == null)
                 return NotFound();
-
                 return Ok(company);
-
-
             }
             catch (Exception ex)
             {
@@ -65,7 +62,6 @@ namespace CompanyMicroService.Controllers
 
             }
         }
-
  
         [HttpPost]
         [Route("register")]
@@ -74,15 +70,14 @@ namespace CompanyMicroService.Controllers
             try
             {
                 _companyService.Register(request);
-                return Ok(StatusCodes.Status201Created);
+                return Ok();
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
-
-     
+             
         [HttpDelete]
         [Route("delete/{companycode}")]
         public async Task<IActionResult>  Delete(string companycode)
