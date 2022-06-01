@@ -1,7 +1,7 @@
 using CompanyMicroService.Models;
 using CompanyMicroService.Repository;
 using CompanyMicroService.Services;
-using EStockCompanyMessagingQueue;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +37,24 @@ namespace CompanyMicroService
 
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanyService, CompanyService>();
-            services.AddSingleton<IPublishDeleteStockRabbitMqService, PublishDeleteStockRabbitMqService>();
+
+            ////var configSection = Configuration.GetSection("ServiceBus");
+            ////var connectionUri = configSection.GetSection("ConnectionUri").Value;
+            ////var usename = configSection.GetSection("Username").Value;
+            ////var password = configSection.GetSection("Password").Value;
+
+            services.AddMassTransit(x =>
+            {
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.Host(new Uri(Configuration["ServiceBus:ConnectionUri"]), h =>
+                    {
+                        h.Username(Configuration["ServiceBus:Username"]);
+                        h.Password(Configuration["ServiceBus:Password"]);
+                    });
+                });
+            });
+            services.AddMassTransitHostedService(true);
 
             services.AddControllers();
             services.AddSwaggerGen(options =>

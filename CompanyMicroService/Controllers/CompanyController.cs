@@ -1,7 +1,9 @@
 ﻿using CompanyMicroService.Models;
 using CompanyMicroService.Services;
+using MassTransit;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RabbitMq.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +18,12 @@ namespace CompanyMicroService.Controllers
     public class CompanyController : ControllerBase
     {
         private readonly ICompanyService _companyService;
-
-        public CompanyController(ICompanyService service)
+        private readonly IPublishEndpoint _publishEndpoint;
+   
+        public CompanyController(ICompanyService service, IPublishEndpoint publishEndpoint)
         {
             _companyService = service;
+            _publishEndpoint = publishEndpoint;
 
         }
     
@@ -81,11 +85,13 @@ namespace CompanyMicroService.Controllers
      
         [HttpDelete]
         [Route("delete/{companycode}")]
-        public ActionResult Delete(string companycode)
+        public async Task<IActionResult>  Delete(string companycode)
         {
             try
             {
-                _companyService.Delete(companycode);
+               await _publishEndpoint.Publish(new CompanyDetailsQueue() { CompanyCode = companycode });
+
+               _companyService.Delete(companycode);
 
                 return Ok(StatusCodes.Status200OK);
             }

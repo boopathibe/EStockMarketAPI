@@ -1,3 +1,4 @@
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using StockMicroService.Consumers;
 using StockMicroService.Models.DatabaseConfig;
 using StockMicroService.Repository;
 using StockMicroService.Services;
@@ -36,6 +38,30 @@ namespace StockMicroService
 
             services.AddScoped<IStockRepository, StockRepository>();
             services.AddScoped<IStockService, StockService>();
+
+            ////var configSection = Configuration.GetSection("ServiceBus");
+            ////var connectionUri = configSection.GetSection("ConnectionUri").Value;
+            ////var usename = configSection.GetSection("Username").Value;
+            ////var password = configSection.GetSection("Password").Value;
+            ////var queueName = configSection.GetSection("DeleteStockQueue").Value;
+
+            services.AddMassTransit(x =>
+            {
+                x.AddConsumer<StockConsumer>();
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.Host(new Uri(Configuration["ServiceBus:ConnectionUri"]), h =>
+                    {
+                        h.Username(Configuration["ServiceBus:Username"]);
+                        h.Password(Configuration["ServiceBus:Password"]);
+                    });
+                    cfg.ReceiveEndpoint(Configuration["ServiceBus:DeleteStockQueue"], ep =>
+                    {
+                        ep.ConfigureConsumer<StockConsumer>(context);
+                    });
+                });
+            });
+            services.AddMassTransitHostedService(true);
 
             services.AddControllers();
 
