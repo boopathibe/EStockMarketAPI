@@ -2,6 +2,7 @@ using CompanyMicroService.Controllers;
 using CompanyMicroService.Models;
 using CompanyMicroService.Services;
 using MassTransit;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
@@ -66,7 +67,47 @@ namespace CompanyMicoService.Test
             _companyService.Setup(x => x.GetAll()).Returns(company);
 
             // Act
-            var response = controller.Get().Result as ObjectResult;
+            var response = controller.Get().Result as OkObjectResult;
+
+            //Assert
+            Assert.IsNotNull(response);            
+            Assert.AreEqual(response.StatusCode, (int)HttpStatusCode.OK);            
+        }
+
+        [Test]
+        public void GetByCompanyCode_Test()
+        {
+            // Arrange
+            var companyDetails = new CompanyResponse
+            {
+                Code = "Comp1",
+                CeoName = "Ceo",
+                Name = "Company",
+                Exchange = new string[] { "NSE", "BSE" },
+                TurnOver = 1000000m,
+                Website = "www.ccc.com"
+            };
+
+            _companyService.Setup(x => x.GetByCode("Comp1")).Returns(companyDetails);
+
+            // Act
+            var response = controller.GetByCode("Comp1").Result as OkObjectResult;
+
+            //Assert
+            Assert.IsNotNull(response);
+            Assert.AreEqual(response.StatusCode, (int)HttpStatusCode.OK);
+        }
+
+        [Test]
+        public void Delete_Company_Test()
+        {
+            // Arrange
+            var companyCode = "Comp1";
+
+            _companyService.Setup(x => x.Delete(companyCode));
+
+            // Act
+            var response = controller.Delete("Comp1").Result as OkObjectResult;
 
             //Assert
             Assert.IsNotNull(response);

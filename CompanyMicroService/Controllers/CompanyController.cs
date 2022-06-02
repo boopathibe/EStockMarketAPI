@@ -43,23 +43,24 @@ namespace CompanyMicroService.Controllers
             }
         }
 
-
         [HttpGet]
         [Route("info/{companycode}")]
-        public ActionResult<CompanyResponse> Get(string companycode)
+        public ActionResult<CompanyResponse> GetByCode(string companycode)
         {
             try
             {
                 var company = _companyService.GetByCode(companycode);
-                
-                if(company == null)
-                return NotFound();
+
+                if (company == null) 
+                {
+                    return NotFound();
+                }
+               
                 return Ok(company);
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-
             }
         }
  
@@ -80,7 +81,7 @@ namespace CompanyMicroService.Controllers
              
         [HttpDelete]
         [Route("delete/{companycode}")]
-        public async Task<IActionResult>  Delete(string companycode)
+        public async Task<IActionResult> Delete(string companycode)
         {
             try
             {

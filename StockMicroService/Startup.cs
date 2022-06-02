@@ -39,23 +39,23 @@ namespace StockMicroService
             services.AddScoped<IStockRepository, StockRepository>();
             services.AddScoped<IStockService, StockService>();
 
-            ////var configSection = Configuration.GetSection("ServiceBus");
-            ////var connectionUri = configSection.GetSection("ConnectionUri").Value;
-            ////var usename = configSection.GetSection("Username").Value;
-            ////var password = configSection.GetSection("Password").Value;
-            ////var queueName = configSection.GetSection("DeleteStockQueue").Value;
+            var configSection = Configuration.GetSection("ServiceBus");
+            var connectionUri = configSection.GetSection("ConnectionUri").Value;
+            var usename = configSection.GetSection("Username").Value;
+            var password = configSection.GetSection("Password").Value;
+            var queueName = configSection.GetSection("DeleteStockQueue").Value;
 
             services.AddMassTransit(x =>
             {
                 x.AddConsumer<StockConsumer>();
                 x.UsingRabbitMq((context, cfg) =>
                 {
-                    cfg.Host(new Uri(Configuration["ServiceBus:ConnectionUri"]), h =>
+                    cfg.Host(new Uri(connectionUri), h =>
                     {
-                        h.Username(Configuration["ServiceBus:Username"]);
-                        h.Password(Configuration["ServiceBus:Password"]);
+                        h.Username(usename);
+                        h.Password(password);
                     });
-                    cfg.ReceiveEndpoint(Configuration["ServiceBus:DeleteStockQueue"], ep =>
+                    cfg.ReceiveEndpoint(queueName, ep =>
                     {
                         ep.ConfigureConsumer<StockConsumer>(context);
                     });
