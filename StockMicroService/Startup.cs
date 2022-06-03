@@ -43,7 +43,7 @@ namespace StockMicroService
             var connectionUri = configSection.GetSection("ConnectionUri").Value;
             var usename = configSection.GetSection("Username").Value;
             var password = configSection.GetSection("Password").Value;
-            var queueName = configSection.GetSection("DeleteStockQueue").Value;
+            var queueName = configSection.GetSection("QueueName").Value;
 
             services.AddMassTransit(x =>
             {
