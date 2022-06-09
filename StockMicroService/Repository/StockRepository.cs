@@ -19,22 +19,21 @@ namespace StockMicroService.Repository
             _stockRepository = database.GetCollection<Stock>(settings.StockCollectionName);
         }
 
-        public Stock Create(Stock stock)
+        public async Task<Stock> Create(Stock stock)
         {
-            this._stockRepository.InsertOne(stock);
+            await this._stockRepository.InsertOneAsync(stock);
             return stock;
         }
 
-        public List<Stock> Get(string code, DateTime startDate, DateTime endDate)
+        public async Task<List<Stock>> Get(string code, DateTime startDate, DateTime endDate)
         {
-            this._stockRepository.DeleteMany(x => x.CompanyCode == code);
-            var stocks = this._stockRepository.Find(x => x.CompanyCode == code && x.CreatedAt >= startDate && x.CreatedAt <= endDate).ToList();
-            return stocks;
+            var stocks = await this._stockRepository.FindAsync(x => x.CompanyCode == code && x.CreatedAt >= startDate && x.CreatedAt <= endDate);
+            return stocks.ToList();
         }
 
-        public void Delete(string code)
+        public async Task Delete(string code)
         {
-            this._stockRepository.DeleteMany(x => x.CompanyCode == code);
+            await this._stockRepository.DeleteManyAsync(x => x.CompanyCode == code);
         }
     }
 }

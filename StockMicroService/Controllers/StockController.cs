@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using StockMicroService.Controllers.Query;
 using StockMicroService.Models.Stock;
 using StockMicroService.Services;
 using System;
@@ -16,19 +18,21 @@ namespace StockMicroService.Controllers
     public class StockController : ControllerBase
     {
         private readonly IStockService _stockService;
+        private readonly ISender _mediator;
 
-        public StockController(IStockService stockService)
+        public StockController(IStockService stockService, ISender mediator)
         {
             _stockService = stockService;
+            _mediator = mediator;
         }
 
         [Route("add")]
         [HttpPost]
-        public ActionResult AddStock([FromBody] StockRequest request)
+        public async Task<ActionResult> AddStock([FromBody] StockRequest request)
         {
             try
             {
-                 _stockService.Create(request);
+                 await _stockService.Create(request);
 
                 return Ok();
             }
@@ -40,11 +44,18 @@ namespace StockMicroService.Controllers
 
         [Route("get/{companyCode}/{startDate}/{endDate}")]
         [HttpGet]
-        public ActionResult<StockResponse> Get(string companyCode, DateTime startDate, DateTime endDate)
+        public async Task<ActionResult<StockResponse>> Get(string companyCode, DateTime startDate, DateTime endDate)
         {
             try
             {
-                var stockResponse = _stockService.Get(companyCode, startDate, endDate);
+                var request = new GetAllStocksQuery()
+                {
+                    CompanyCode = companyCode,
+                    StartDate = startDate,
+                    EndDate = endDate
+                };
+
+                var stockResponse = await _mediator.Send(request);
 
                 return Ok(stockResponse);
             }

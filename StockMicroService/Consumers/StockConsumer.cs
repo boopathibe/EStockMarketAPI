@@ -19,8 +19,7 @@ namespace StockMicroService.Consumers
         public async Task Consume(ConsumeContext<CompanyDetailsQueue> context)
         {
             var data = context.Message;
-           _service.Delete(data.CompanyCode);
-           
+           await _service.Delete(data.CompanyCode);
         }
     }
 }
