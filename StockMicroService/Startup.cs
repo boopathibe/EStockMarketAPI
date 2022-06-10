@@ -1,4 +1,5 @@
 using MassTransit;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -64,6 +65,8 @@ namespace StockMicroService
             services.AddMassTransitHostedService(true);
 
             services.AddControllers();
+
+            services.AddMediatR(typeof(Program).Assembly);
 
             services.AddSwaggerGen(options =>
             {

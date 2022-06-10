@@ -3,6 +3,7 @@ using StockMicroService.Models.Stock;
 using StockMicroService.Repository;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace StockMicroService.Services
 {
@@ -15,7 +16,7 @@ namespace StockMicroService.Services
             this._stockRepository = repository;
         }
 
-        public StockRequest Create(StockRequest stockRequest)
+        public async Task<StockRequest> Create(StockRequest stockRequest)
         {
             var stock = new Stock()
             {
@@ -24,13 +25,13 @@ namespace StockMicroService.Services
                 CreatedAt = DateTime.UtcNow
             };
 
-            this._stockRepository.Create(stock);
+            await this._stockRepository.Create(stock);
             return stockRequest;
         }
 
-        public StockResponse Get(string code, DateTime startDate, DateTime endDate)
+        public async Task<StockResponse> Get(string code, DateTime startDate, DateTime endDate)
         {
-            var stocks = this._stockRepository.Get(code, startDate, endDate);
+            var stocks = await this._stockRepository.Get(code, startDate, endDate);
             return new StockResponse()
             {
                 Stocks = stocks.Select( x=> new StockDetails()
@@ -46,9 +47,9 @@ namespace StockMicroService.Services
             };
         }
 
-        public void Delete(string code)
+        public async Task Delete(string code)
         {
-            _stockRepository.Delete(code);
+           await _stockRepository.Delete(code);
         }     
     }
 }

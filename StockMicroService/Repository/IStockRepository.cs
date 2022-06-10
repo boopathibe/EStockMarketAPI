@@ -8,10 +8,10 @@ namespace StockMicroService.Repository
 {
     public interface IStockRepository
     {
-        List<Stock> Get(string code, DateTime startDate, DateTime endDate);
+        Task<List<Stock>> Get(string code, DateTime startDate, DateTime endDate);
 
-       Stock Create(Stock stock);
+       Task<Stock> Create(Stock stock);
 
-        void Delete(string code);
+        Task Delete(string code);
     }
 }
