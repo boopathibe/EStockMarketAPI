@@ -45,7 +45,17 @@ namespace StockMicroService
             var usename = configSection.GetSection("Username").Value;
             var password = configSection.GetSection("Password").Value;
             var queueName = configSection.GetSection("QueueName").Value;
-
+            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200", "http://localhost:43942")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
             services.AddMassTransit(x =>
             {
                 x.AddConsumer<StockConsumer>();
@@ -96,7 +106,14 @@ namespace StockMicroService
             {
                 endpoints.MapControllers();
             });
-
+            app.UseCors();
+            app.UseCors(builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
             app.UseSwagger();
             app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Stock Services"));
         }

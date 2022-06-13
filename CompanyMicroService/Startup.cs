@@ -54,9 +54,19 @@ namespace CompanyMicroService
                     });
                 });
             });
-            services.AddMassTransitHostedService(true);
-
+            services.AddMassTransitHostedService(true);            
             services.AddControllers();
+            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:4888", "http://localhost:4200")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
             services.AddSwaggerGen(options =>
            {
                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -80,7 +90,14 @@ namespace CompanyMicroService
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCors();
+            app.UseCors(builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
