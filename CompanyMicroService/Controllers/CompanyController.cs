@@ -19,22 +19,26 @@ namespace CompanyMicroService.Controllers
     {
         private readonly ICompanyService _companyService;
         private readonly IPublishEndpoint _publishEndpoint;
-   
+
         public CompanyController(ICompanyService service, IPublishEndpoint publishEndpoint)
         {
             _companyService = service;
             _publishEndpoint = publishEndpoint;
 
         }
-    
+
         [HttpGet]
         [Route("getall")]
         public ActionResult<List<CompanyResponse>> Get()
         {
             try
             {
-               var companies =  _companyService.GetAll();
-               return Ok(companies);
+                var companies = _companyService.GetAll();
+                if (companies == null)
+                {
+                    return Ok(StatusCodes.Status404NotFound);
+                }
+                return Ok(companies);
             }
             catch (Exception ex)
             {
@@ -51,11 +55,11 @@ namespace CompanyMicroService.Controllers
             {
                 var company = _companyService.GetByCode(companycode);
 
-                if (company == null) 
+                if (company == null)
                 {
-                    return NotFound();
+                    return Ok(null);
                 }
-               
+
                 return Ok(company);
             }
             catch (Exception ex)
@@ -63,7 +67,7 @@ namespace CompanyMicroService.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
- 
+
         [HttpPost]
         [Route("register")]
         public ActionResult Post([FromBody] CompanyRequest request)
@@ -71,23 +75,30 @@ namespace CompanyMicroService.Controllers
             try
             {
                 _companyService.Register(request);
-                return Ok();
+                return Ok(StatusCodes.Status201Created);
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
-             
+
         [HttpDelete]
         [Route("delete/{companycode}")]
         public async Task<IActionResult> Delete(string companycode)
         {
             try
             {
-               await _publishEndpoint.Publish(new CompanyDetailsQueue() { CompanyCode = companycode });
+                var company = _companyService.GetByCode(companycode);
 
-               _companyService.Delete(companycode);
+                if (company == null)
+                {
+                    return Ok(StatusCodes.Status404NotFound);
+                }
+
+                await _publishEndpoint.Publish(new CompanyDetailsQueue() { CompanyCode = companycode });
+
+                _companyService.Delete(companycode);
 
                 return Ok(StatusCodes.Status200OK);
             }
