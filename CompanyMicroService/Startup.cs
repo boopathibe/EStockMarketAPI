@@ -76,8 +76,6 @@ namespace CompanyMicroService
                 };
             });
             services.AddControllers();
-            services.AddCors();
-
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
@@ -89,15 +87,15 @@ namespace CompanyMicroService
                     });
             });
             services.AddSwaggerGen(options =>
-           {
-               options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
-               {
-                   Title = "EStock Company Service API",
-                   Version = "v1",
-                   Description = "Estock company micro services for CRUD",
-               });
+            {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "EStock Company Service API",
+                    Version = "v1",
+                    Description = "Estock company micro services for CRUD",
+                });
 
-           });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

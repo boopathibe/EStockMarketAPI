@@ -34,7 +34,7 @@ namespace StockMicroService.Controllers
             {
                  await _stockService.Create(request);
 
-                return Ok();
+                return Ok(StatusCodes.Status201Created);
             }
             catch (Exception ex)
             {

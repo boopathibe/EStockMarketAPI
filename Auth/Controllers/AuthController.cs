@@ -1,4 +1,5 @@
 ﻿using Authentication.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -9,18 +10,19 @@ using System.Text;
 
 namespace Authentication.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/v1.0/market/auth")]
     public class AuthController : ControllerBase
     {
-        [HttpPost("login")]
+        [HttpPost]
+        [Route("login")]
         public IActionResult Login([FromBody] LoginModel user)
         {
             if (user is null)
             {
                 return BadRequest("Invalid client request");
             }
-            if (user.UserName == "vinoth" && user.Password == "rv@123")
+            if (user.UserName == "admin" && user.Password == "admin123")
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -32,9 +34,9 @@ namespace Authentication.Controllers
                     signingCredentials: signinCredentials
                 );
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                return Ok(new AuthenticatedResponse { Token = tokenString });
+                return Ok(new AuthenticatedResponse { Token = tokenString, StatusCode = StatusCodes.Status200OK });
             }
-            return Unauthorized();
+            return Ok(new AuthenticatedResponse { StatusCode = StatusCodes.Status401Unauthorized });
         }
     }
 }

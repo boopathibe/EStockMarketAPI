@@ -45,17 +45,7 @@ namespace StockMicroService
             var usename = configSection.GetSection("Username").Value;
             var password = configSection.GetSection("Password").Value;
             var queueName = configSection.GetSection("QueueName").Value;
-            services.AddCors();
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:4200", "http://localhost:43942")
-                                            .AllowAnyHeader()
-                                            .AllowAnyMethod();
-                    });
-            });
+            
             services.AddMassTransit(x =>
             {
                 x.AddConsumer<StockConsumer>();
@@ -73,11 +63,20 @@ namespace StockMicroService
                 });
             });
             services.AddMassTransitHostedService(true);
-
             services.AddControllers();
 
             services.AddMediatR(typeof(Program).Assembly);
-
+            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -101,7 +100,7 @@ namespace StockMicroService
             app.UseRouting();
 
             app.UseAuthorization();
-
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

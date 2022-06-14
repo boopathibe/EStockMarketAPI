@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,12 +9,10 @@ namespace Authentication.Models
 {
     public class LoginModel
     {
-        public string? UserName { get; set; }
-        public string? Password { get; set; }
-    }
+        [JsonProperty("userName")]
+        public string UserName { get; set; }
 
-    public class AuthenticatedResponse
-    {
-        public string? Token { get; set; }
+        [JsonProperty("password")]
+        public string Password { get; set; }
     }
 }

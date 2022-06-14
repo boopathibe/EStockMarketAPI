@@ -1,6 +1,18 @@
 {
   "ReRoutes": [
     {
+      "DownstreamPathTemplate": "/api/v1.0/market/auth/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 38083
+        }
+      ],
+      "UpstreamPathTemplate": "/auth/login",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/v1.0/market/company/getall",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
