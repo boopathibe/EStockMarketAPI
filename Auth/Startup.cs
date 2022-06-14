@@ -1,16 +1,12 @@
-using CompanyMicroService.Models;
-using CompanyMicroService.Repository;
-using CompanyMicroService.Services;
-using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -18,7 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CompanyMicroService
+namespace Auth
 {
     public class Startup
     {
@@ -32,32 +28,8 @@ namespace CompanyMicroService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CompanyDatabaseSettings>(
-                Configuration.GetSection(nameof(CompanyDatabaseSettings)));
+            services.AddControllers();
 
-            services.AddSingleton<ICompanyDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<CompanyDatabaseSettings>>().Value);
-
-            services.AddScoped<ICompanyRepository, CompanyRepository>();
-            services.AddScoped<ICompanyService, CompanyService>();
-
-            var configSection = Configuration.GetSection("ServiceBus");
-            var connectionUri = configSection.GetSection("ConnectionUri").Value;
-            var usename = configSection.GetSection("Username").Value;
-            var password = configSection.GetSection("Password").Value;
-
-            services.AddMassTransit(x =>
-            {
-                x.UsingRabbitMq((context, cfg) =>
-                {
-                    cfg.Host(new Uri(connectionUri), h =>
-                    {
-                        h.Username(usename);
-                        h.Password(password);
-                    });
-                });
-            });
-            services.AddMassTransitHostedService(true);
             services.AddAuthentication(opt => {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -89,15 +61,15 @@ namespace CompanyMicroService
                     });
             });
             services.AddSwaggerGen(options =>
-           {
-               options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
-               {
-                   Title = "EStock Company Service API",
-                   Version = "v1",
-                   Description = "Estock company micro services for CRUD",
-               });
+            {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "EStock Auth Service API",
+                    Version = "v1",
+                    Description = "Estock auth",
+                });
 
-           });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -108,8 +80,8 @@ namespace CompanyMicroService
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -127,7 +99,7 @@ namespace CompanyMicroService
             });
 
             app.UseSwagger();
-            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "EStock Company Services"));
+            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "EStock Auth Services"));
         }
     }
 }

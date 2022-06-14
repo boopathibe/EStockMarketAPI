@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyMicoService.Test", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockMicroService.Test", "StockMicroService.Test\StockMicroService.Test.csproj", "{F3D0253F-0B82-4B02-8616-4A90E37A91B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMq.Models", "RabbitMq.Models\RabbitMq.Models.csproj", "{AD10AD32-3118-46A0-811F-F155025C2FBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMq.Models", "RabbitMq.Models\RabbitMq.Models.csproj", "{AD10AD32-3118-46A0-811F-F155025C2FBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "Auth\Auth.csproj", "{11610FD5-EA5F-4C31-8113-84D5BCE24865}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{AD10AD32-3118-46A0-811F-F155025C2FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD10AD32-3118-46A0-811F-F155025C2FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD10AD32-3118-46A0-811F-F155025C2FBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11610FD5-EA5F-4C31-8113-84D5BCE24865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11610FD5-EA5F-4C31-8113-84D5BCE24865}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11610FD5-EA5F-4C31-8113-84D5BCE24865}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11610FD5-EA5F-4C31-8113-84D5BCE24865}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

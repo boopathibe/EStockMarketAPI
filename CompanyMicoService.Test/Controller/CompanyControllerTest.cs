@@ -29,7 +29,7 @@ namespace CompanyMicoService.Test
         public void AddCompany_Test()
         {
             // Arrange
-            var companyRequest = new CompanyRequest()
+            var companyRequest = new CompanyRequestModel()
             {
               Code = "Comp1",
               CeoName = "Ceo",
@@ -39,7 +39,7 @@ namespace CompanyMicoService.Test
               Website = "www.ccc.com"
             };
 
-            _companyService.Setup(x => x.Register(It.IsAny<CompanyRequest>())).Returns(companyRequest);
+            _companyService.Setup(x => x.Register(It.IsAny<CompanyRequestModel>())).Returns(companyRequest);
 
             // Act
             var response = controller.Post(companyRequest) as OkResult;
@@ -51,8 +51,8 @@ namespace CompanyMicoService.Test
         public void GetAll_Company_Test()
         {
             // Arrange
-            var company = new List<CompanyResponse>();
-            var companyDetails = new CompanyResponse
+            var company = new List<CompanyResponseModel>();
+            var companyDetails = new CompanyResponseModel
             {
                 Code = "Comp1",
                 CeoName = "Ceo",
@@ -78,7 +78,7 @@ namespace CompanyMicoService.Test
         public void GetByCompanyCode_Test()
         {
             // Arrange
-            var companyDetails = new CompanyResponse
+            var companyDetails = new CompanyResponseModel
             {
                 Code = "Comp1",
                 CeoName = "Ceo",

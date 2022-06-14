@@ -17,9 +17,9 @@ namespace CompanyMicroService.Services
             _companyRepository = companyRepository;
         }
 
-        public List<CompanyResponse> GetAll()
+        public List<CompanyResponseModel> GetAll()
         {
-            return this._companyRepository.Get().Select(company => new CompanyResponse
+            return this._companyRepository.Get().Select(company => new CompanyResponseModel
             {
                 Code = company.Code,
                 CeoName = company.CeoName,
@@ -30,7 +30,7 @@ namespace CompanyMicroService.Services
             }).ToList();
         }
 
-        public CompanyResponse GetByCode(string code)
+        public CompanyResponseModel GetByCode(string code)
         {
             var company =  this._companyRepository.GetByCode(code);
             if(company == null)
@@ -38,7 +38,7 @@ namespace CompanyMicroService.Services
                 return null;
             }
 
-            return new CompanyResponse
+            return new CompanyResponseModel
             {
                 Code = company.Code,
                 CeoName = company.CeoName,
@@ -49,7 +49,7 @@ namespace CompanyMicroService.Services
             };
         }
 
-        public CompanyRequest Register(CompanyRequest company)
+        public CompanyRequestModel Register(CompanyRequestModel company)
         {
             var companyEntity = new Company()
             {

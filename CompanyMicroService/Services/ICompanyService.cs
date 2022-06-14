@@ -8,11 +8,11 @@ namespace CompanyMicroService.Services
 {
     public interface ICompanyService
     {
-        List<CompanyResponse> GetAll();
+        List<CompanyResponseModel> GetAll();
 
-        CompanyResponse GetByCode(string code);
+        CompanyResponseModel GetByCode(string code);
 
-        CompanyRequest Register(CompanyRequest company);
+        CompanyRequestModel Register(CompanyRequestModel company);
 
         void Delete(string code);
     }

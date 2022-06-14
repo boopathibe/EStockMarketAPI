@@ -1,6 +1,7 @@
 ﻿using CompanyMicroService.Models;
 using CompanyMicroService.Services;
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RabbitMq.Models;
@@ -27,9 +28,9 @@ namespace CompanyMicroService.Controllers
 
         }
     
-        [HttpGet]
+        [HttpGet, Authorize]
         [Route("getall")]
-        public ActionResult<List<CompanyResponse>> Get()
+        public ActionResult<List<CompanyResponseModel>> Get()
         {
             try
             {
@@ -45,7 +46,7 @@ namespace CompanyMicroService.Controllers
 
         [HttpGet]
         [Route("info/{companycode}")]
-        public ActionResult<CompanyResponse> GetByCode(string companycode)
+        public ActionResult<CompanyResponseModel> GetByCode(string companycode)
         {
             try
             {
@@ -66,7 +67,7 @@ namespace CompanyMicroService.Controllers
  
         [HttpPost]
         [Route("register")]
-        public ActionResult Post([FromBody] CompanyRequest request)
+        public ActionResult Post([FromBody] CompanyRequestModel request)
         {
             try
             {
