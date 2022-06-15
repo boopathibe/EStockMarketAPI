@@ -1,9 +1,6 @@
 ﻿using MediatR;
 using StockMicroService.Models.Stock;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace StockMicroService.Controllers.Query
 {

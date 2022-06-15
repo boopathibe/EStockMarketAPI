@@ -1,4 +1,5 @@
-﻿using Authentication.Models;
+﻿using Auth.Services;
+using Authentication.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -14,6 +15,13 @@ namespace Authentication.Controllers
     [Route("api/v1.0/market/auth")]
     public class AuthController : ControllerBase
     {
+        private readonly ILoginServices _loginServices;
+
+        public AuthController(ILoginServices loginServices)
+        {
+            _loginServices = loginServices;
+        }
+
         [HttpPost]
         [Route("login")]
         public IActionResult Login([FromBody] LoginModel user)
@@ -22,7 +30,10 @@ namespace Authentication.Controllers
             {
                 return BadRequest("Invalid client request");
             }
-            if (user.UserName == "admin" && user.Password == "admin123")
+            
+            var isValidUser = _loginServices.IsValidUser(user);
+
+            if (isValidUser)
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);

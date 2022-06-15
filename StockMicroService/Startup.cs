@@ -99,12 +99,8 @@ namespace StockMicroService
 
             app.UseRouting();
 
-            app.UseAuthorization();
-           
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseAuthorization();           
+         
             app.UseCors();
             app.UseCors(builder =>
             {
@@ -112,6 +108,10 @@ namespace StockMicroService
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader();
+            });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
             app.UseSwagger();
             app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Stock Services"));

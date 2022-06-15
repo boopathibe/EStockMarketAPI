@@ -21,7 +21,7 @@ namespace StockMicroService.Services
             var stock = new Stock()
             {
                 CompanyCode = stockRequest.CompanyCode,
-                StockPrice = stockRequest.StockPrice,                
+                StockPrice = stockRequest.StockPrice,
                 CreatedAt = DateTime.UtcNow
             };
 

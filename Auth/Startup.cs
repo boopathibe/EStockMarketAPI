@@ -1,18 +1,14 @@
+using Auth.Services;
+using Authentication.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Auth
 {
@@ -30,6 +26,13 @@ namespace Auth
         {
             services.AddControllers();
 
+            services.Configure<UserLoginDatabaseSettings>(
+               Configuration.GetSection(nameof(UserLoginDatabaseSettings)));
+
+            services.AddSingleton<IUserLoginDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<UserLoginDatabaseSettings>>().Value);
+
+            services.AddScoped<ILoginServices, LoginServices>();
             services.AddAuthentication(opt => {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;

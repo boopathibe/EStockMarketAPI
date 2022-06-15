@@ -16,7 +16,7 @@ namespace StockMicroService.Entities
         [BsonElement("companyCode")]
         public string CompanyCode { get; set; }
 
-        [BsonElement("stockProce")]
+        [BsonElement("stockPrice")]
         public decimal StockPrice { get; set; }
 
         [BsonElement("createdAt")]
