@@ -17,9 +17,9 @@ steps:
     script: |
       $path = "$(Build.SourcesDirectory)"
       write-host "path-$path"
-      $test = Get-ChildItem -Path $path -Recurse -force
+      $test = Get-ChildItem -Path $path -file -Recurse -force
       foreach($t in $test){
-        write-host "$t"
+       write-host "$($t.fullname)"
       }
 - task: Docker@2
   inputs:
