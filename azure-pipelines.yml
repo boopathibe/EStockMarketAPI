@@ -17,4 +17,4 @@ steps:
     containerRegistry: 'DockerServiceConnection'
     repository: 'estock'
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    Dockerfile: '$(Build.SourcesDirectory)/CompanyMicroService/Dockerfile'
