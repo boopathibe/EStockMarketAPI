@@ -9,7 +9,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR "C:\agent\_work\1\s"
-COPY ["C:\agent\_work\1\s\CompanyMicroService\CompanyMicroService.csproj", "CompanyMicroService/"]
+COPY ["CompanyMicroService\CompanyMicroService.csproj", "CompanyMicroService/"]
 RUN dotnet restore "CompanyMicroService/CompanyMicroService.csproj"
 COPY . .
 WORKDIR "/src/CompanyMicroService"
