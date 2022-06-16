@@ -17,7 +17,7 @@ steps:
     script: |
       $path = $(Build.SourcesDirectory)
       write-host "path-$path"
-      $test = Get-ChildItem $path -Recurse -force
+      $test = Get-ChildItem -Path -$path -Recurse -force
       foreach($t in $test){
         write-host "$t"
       }
