@@ -21,6 +21,13 @@ steps:
       foreach($t in $test){
        write-host "$($t.fullname)"
       }
+
+- task: DotNetCoreCLI@2
+  displayName: "Publish"
+  inputs:
+      command: "publish"
+      zipAfterPublish: false
+      arguments: -c=Release o=build
 - task: Docker@2
   inputs:
     containerRegistry: 'DockerServiceConnection'
