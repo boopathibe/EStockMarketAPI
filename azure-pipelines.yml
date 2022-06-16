@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  name: EStockAgentPool
+  name: Azure Pipelines
 
 steps:
 - script: echo Hello, world!
