@@ -8,8 +8,8 @@ WORKDIR /app
 EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
-WORKDIR $(Build.SourcesDirectory)
-COPY ["$(Build.SourcesDirectory)/CompanyMicroService/CompanyMicroService.csproj", "CompanyMicroService/"]
+WORKDIR "C:\agent\_work\1\s"
+COPY ["C:\agent\_work\1\s\CompanyMicroService\CompanyMicroService.csproj", "CompanyMicroService/"]
 RUN dotnet restore "CompanyMicroService/CompanyMicroService.csproj"
 COPY . .
 WORKDIR "/src/CompanyMicroService"
