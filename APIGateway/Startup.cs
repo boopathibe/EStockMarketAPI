@@ -19,6 +19,16 @@ namespace APIGateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOcelot();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,7 +38,7 @@ namespace APIGateway
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseAuthentication();
             app.UseRouting();
             app.UseCors();
             app.UseCors(builder =>
