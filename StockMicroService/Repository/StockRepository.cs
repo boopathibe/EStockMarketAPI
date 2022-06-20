@@ -27,8 +27,9 @@ namespace StockMicroService.Repository
 
         public async Task<List<Stock>> Get(string code, DateTime startDate, DateTime endDate)
         {
-            var stocks = await this._stockRepository.FindAsync(x => x.CompanyCode == code && x.CreatedAt >= startDate && x.CreatedAt <= endDate);
-            return stocks.ToList();
+            var stocks = await this._stockRepository.FindAsync(x => x.CompanyCode == code);
+            var stocksList = stocks.ToList().Where(x => x.CreatedAt.Date >= startDate.Date && x.CreatedAt.Date <= endDate.Date).ToList();
+            return stocksList;
         }
 
         public async Task Delete(string code)

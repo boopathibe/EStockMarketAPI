@@ -32,19 +32,24 @@ namespace StockMicroService.Services
         public async Task<StockResponse> Get(string code, DateTime startDate, DateTime endDate)
         {
             var stocks = await this._stockRepository.Get(code, startDate, endDate);
-            return new StockResponse()
+            if (stocks != null && stocks.Count > 0)
             {
-                Stocks = stocks.Select( x=> new StockDetails()
+                return new StockResponse()
                 {
-                    CompanyCode = x.CompanyCode,
-                    StockPrice = x.StockPrice,
-                    StockDate = x.CreatedAt.ToShortDateString(),
-                    StockTime = x.CreatedAt.ToShortTimeString()
-                }).ToList(),
-                AvgPrice = stocks.Average(x => x.StockPrice),
-                MaxPrice = stocks.Max(x => x.StockPrice),
-                MinPrice = stocks.Min(x => x.StockPrice)
-            };
+                    Stocks = stocks?.Select(x => new StockDetails()
+                    {
+                        CompanyCode = x.CompanyCode,
+                        StockPrice = x.StockPrice,
+                        StockDate = x.CreatedAt.ToShortDateString(),
+                        StockTime = x.CreatedAt.ToShortTimeString()
+                    }).ToList(),
+                    AvgPrice = stocks.Average(x => x.StockPrice),
+                    MaxPrice = stocks.Max(x => x.StockPrice),
+                    MinPrice = stocks.Min(x => x.StockPrice)
+                };
+            }
+
+            return null;
         }
 
         public async Task Delete(string code)
