@@ -58,6 +58,7 @@ namespace Auth
                 options.AddDefaultPolicy(
                     builder =>
                     {
+
                         builder.WithOrigins("http://localhost:4200")
                                             .AllowAnyHeader()
                                             .AllowAnyMethod();

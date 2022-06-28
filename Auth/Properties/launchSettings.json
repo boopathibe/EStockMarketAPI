@@ -20,11 +20,11 @@
     "Auth": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "auth",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:4002"
+      "applicationUrl": "https://localhost:38083"
     }
   }
 }

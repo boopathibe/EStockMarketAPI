@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/StockMicroService/.config/dotnet-tools.json
+/Auth/Properties/ServiceDependencies/LoginAuthAppService - Web Deploy/profile.arm.json
+/StockMicroService/Properties/ServiceDependencies/CompanyMSApi - Web Deploy
+/StockMicroService/Properties/serviceDependencies.CompanyMSApi - Web Deploy.json
+/StockMicroService/Properties/serviceDependencies.json

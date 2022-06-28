@@ -62,7 +62,7 @@ namespace StockMicroService
                     });
                 });
             });
-            services.AddMassTransitHostedService(true);
+            
             services.AddControllers();
 
             services.AddMediatR(typeof(Program).Assembly);
@@ -77,6 +77,8 @@ namespace StockMicroService
                                             .AllowAnyMethod();
                     });
             });
+
+            services.AddSwaggerGen();
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -92,13 +94,10 @@ namespace StockMicroService
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+            app.UseSwagger(); 
+            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Stock Services"));
+            
             app.UseRouting();
-
             app.UseAuthorization();           
          
             app.UseCors();
@@ -112,9 +111,7 @@ namespace StockMicroService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
-            app.UseSwagger();
-            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Stock Services"));
+            });            
         }
     }
 }
