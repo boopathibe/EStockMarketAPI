@@ -1,14 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace APIGateway
 {
@@ -24,9 +19,10 @@ namespace APIGateway
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200")
-                                            .AllowAnyHeader()
-                                            .AllowAnyMethod();
+                        builder
+                              .AllowAnyOrigin()
+                              .AllowAnyMethod()
+                              .AllowAnyHeader();
                     });
             });
         }
