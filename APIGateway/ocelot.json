@@ -6,7 +6,6 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "estockauthservice.azurewebsites.net"
-         
         }
       ],
       "UpstreamPathTemplate": "/auth/login",
@@ -16,6 +15,7 @@
       "DownstreamPathTemplate": "/api/v1.0/market/company/getall",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
+        {
           "Host": "estockcompanymicroservice.azurewebsites.net/"
         }
       ],
@@ -26,6 +26,7 @@
       "DownstreamPathTemplate": "/api/v1.0/market/company/register",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
+        {
           "Host": "estockcompanymicroservice.azurewebsites.net/"
         }
       ],
@@ -36,6 +37,7 @@
       "DownstreamPathTemplate": "/api/v1.0/market/company/info/{companycode}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
+        {
           "Host": "estockcompanymicroservice.azurewebsites.net/"
         }
       ],
@@ -46,6 +48,7 @@
       "DownstreamPathTemplate": "/api/v1.0/market/company/delete/{companycode}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
+        {
           "Host": "estockcompanymicroservice.azurewebsites.net/"
         }
       ],
@@ -56,8 +59,8 @@
       "DownstreamPathTemplate": "/api/v1.0/market/stock/get/{companyCode}/{startDate}/{endDate}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
+        {
           "Host": "estockmicroservice.azurewebsites.net"
-         
         }
       ],
       "UpstreamPathTemplate": "/stock/get/{companyCode}/{startDate}/{endDate}",
@@ -67,6 +70,7 @@
       "DownstreamPathTemplate": "/api/v1.0/market/stock/add",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
+        {
           "Host": "estockmicroservice.azurewebsites.net"
         }
       ],
