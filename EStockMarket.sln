@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockMicroService.Test", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMq.Models", "RabbitMq.Models\RabbitMq.Models.csproj", "{AD10AD32-3118-46A0-811F-F155025C2FBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "Auth\Auth.csproj", "{11610FD5-EA5F-4C31-8113-84D5BCE24865}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth", "Auth\Auth.csproj", "{11610FD5-EA5F-4C31-8113-84D5BCE24865}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

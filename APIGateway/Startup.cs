@@ -20,9 +20,9 @@ namespace APIGateway
                     builder =>
                     {
                         builder
-                              .AllowAnyOrigin()
-                              .AllowAnyMethod()
-                              .AllowAnyHeader();
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
                     });
             });
         }

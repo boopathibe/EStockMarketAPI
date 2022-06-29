@@ -57,7 +57,7 @@ namespace CompanyMicroService
                     });
                 });
             });
-
+          ////  services.AddMassTransitHostedService(true);
             services.AddAuthentication(opt => {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -81,10 +81,10 @@ namespace CompanyMicroService
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200")
-                                           .AllowAnyHeader()
-                                           .AllowAnyMethod()
-                                           .AllowAnyHeader();
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
                     });
             });
             services.AddSwaggerGen(options =>
