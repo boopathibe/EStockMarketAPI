@@ -96,9 +96,9 @@ namespace CompanyMicroService.Controllers
                     return Ok(StatusCodes.Status404NotFound);
                 }
 
-                await _publishEndpoint.Publish(new CompanyDetailsQueue() { CompanyCode = companycode });
-
                 _companyService.Delete(companycode);
+
+                await _publishEndpoint.Publish(new CompanyDetailsQueue() { CompanyCode = companycode });
 
                 return Ok(StatusCodes.Status200OK);
             }
