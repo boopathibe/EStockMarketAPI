@@ -62,7 +62,7 @@ namespace StockMicroService
                     });
                 });
             });
-            
+           //// services.AddMassTransitHostedService(true);
             services.AddControllers();
 
             services.AddMediatR(typeof(Program).Assembly);
@@ -72,9 +72,7 @@ namespace StockMicroService
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200")
-                                            .AllowAnyHeader()
-                                            .AllowAnyMethod();
+                        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                     });
             });
 
