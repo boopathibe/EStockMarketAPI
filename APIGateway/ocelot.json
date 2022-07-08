@@ -5,7 +5,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "estockapigatewayappservice.azurewebsites.net"
+          "Host": "estockmarketauthappservice.azurewebsites.net"
         }
       ],
       "UpstreamPathTemplate": "/auth/login",
