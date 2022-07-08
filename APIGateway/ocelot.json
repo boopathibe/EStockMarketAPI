@@ -5,7 +5,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "loginauthappservice.azurewebsites.net"
+          "Host": "estockapigatewayappservice.azurewebsites.net"
         }
       ],
       "UpstreamPathTemplate": "/auth/login",
@@ -16,7 +16,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "companymsapi.azurewebsites.net"
+          "Host": "estockmarketcompanyappservice.azurewebsites.net"
         }
       ],
       "UpstreamPathTemplate": "/company/getall",
@@ -27,7 +27,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "companymsapi.azurewebsites.net"
+          "Host": "estockmarketcompanyappservice.azurewebsites.net"
         }
       ],
       "UpstreamPathTemplate": "/company/register",
@@ -38,7 +38,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "companymsapi.azurewebsites.net"
+          "Host": "estockmarketcompanyappservice.azurewebsites.net"
         }
       ],
       "UpstreamPathTemplate": "/company/info/{companycode}",
@@ -49,7 +49,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "companymsapi.azurewebsites.net"
+          "Host": "estockmarketcompanyappservice.azurewebsites.net"
         }
       ],
       "UpstreamPathTemplate": "/company/delete/{companycode}",
@@ -60,7 +60,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "stockappservice.azurewebsites.net"
+          "Host": "estockmarketstockappservice.azurewebsites.net"
         }
       ],
       "UpstreamPathTemplate": "/stock/get/{companyCode}/{startDate}/{endDate}",
@@ -71,7 +71,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "stockappservice.azurewebsites.net"
+          "Host": "estockmarketstockappservice.azurewebsites.net"
         }
       ],
       "UpstreamPathTemplate": "/stock/add",
